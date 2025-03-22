@@ -6,6 +6,13 @@ class Program
 {
     static void Main(string[] args)
     {
+        /*
+        What I added:
+        - Random scripture selection from a library.
+        - Load scriptures from an external file ('scriptures.txt').
+        - Hint system to help reveal one word (-5 points per hint).
+        - Scoring system to track progress (+10 points for hiding words).
+        */
         string fileName = "verses.txt";
 
         List<Scripture> scriptures = LoadScripturesFromFile(fileName);
