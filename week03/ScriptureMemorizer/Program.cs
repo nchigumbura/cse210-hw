@@ -6,28 +6,22 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Hardcoded file name for scriptures
         string fileName = "verses.txt";
 
-        // Load scriptures from the specified file
-        List<Scripture> scriptures = LoadScripturesFromFile(verses);
+        List<Scripture> scriptures = LoadScripturesFromFile(fileName);
 
-        // Pick a random scripture for the user
         Random random = new Random();
         Scripture scripture = scriptures[random.Next(scriptures.Count)];
 
-        // Start the memorization process
         RunMemorizationProgram(scripture);
     }
 
-    // Load the scriptures from a file
     static List<Scripture> LoadScripturesFromFile(string verses)
     {
         List<Scripture> scriptures = new List<Scripture>();
 
         try
         {
-            // File is assumed to be in the same directory as the program
             foreach (string line in File.ReadLines(verses))
             {
                 string[] parts = line.Split('|');
@@ -39,7 +33,7 @@ class Program
         }
         catch (FileNotFoundException)
         {
-            Console.WriteLine($"Error: File '{fileName}' could not be found.");
+            Console.WriteLine($"Error: File '{verses}' could not be found.");
         }
         catch (IOException ex)
         {
@@ -56,7 +50,6 @@ class Program
 
         while (true)
         {
-            Console.Clear();
             Console.WriteLine(scripture.Display());
             Console.WriteLine($"Score: {score}\n");
 
@@ -79,7 +72,6 @@ class Program
 
             if (scripture.IsFullyHidden())
             {
-                Console.Clear();
                 Console.WriteLine(scripture.Display());
                 Console.WriteLine($"\nFinal Score: {score}");
                 Console.WriteLine("All words hidden. Program ending.");
