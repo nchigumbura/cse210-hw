@@ -24,8 +24,10 @@ class Program
             // Hide random words in scripture
             scripture.HideRandomWords();
 
+            // Check if all words are hidden
             if (scripture.IsFullyHidden())
             {
+                //Console.Clear();
                 Console.WriteLine(scripture.Display());
                 Console.WriteLine("\nAll words hidden. Program ending.");
                 break;
