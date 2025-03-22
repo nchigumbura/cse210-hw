@@ -1,9 +1,9 @@
 class Reference
 {
-    private string _book; // Book of the scripture
-    private string _chapterAndVerse; // Chapter and verse
+    private string _book; // Book name
+    private string _chapterAndVerse; // Chapter and verse(s)
 
-    // Constructor to split book and verse
+    // Constructor to parse book and chapter/verse from a string input
     public Reference(string reference)
     {
         var parts = reference.Split(' ');
@@ -11,7 +11,7 @@ class Reference
         _chapterAndVerse = parts[1];
     }
 
-    // Get formatted reference
+    // Format the reference for display (e.g., "John 3:16")
     public string GetFormattedReference()
     {
         return $"{_book} {_chapterAndVerse}";

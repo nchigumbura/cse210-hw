@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 class Scripture
 {
-    private Reference _reference; // Reference of the scripture
-    private List<Word> _words; // List of words
+    private Reference _reference; // Scripture reference
+    private List<Word> _words; // List of words in the scripture
 
-    // Constructor to split text into words
+    // Split the scripture text into words and create Word objects
     public Scripture(string reference, string text)
     {
         _reference = new Reference(reference);
@@ -17,7 +17,7 @@ class Scripture
         }
     }
 
-    // Hide random words
+    // Hide one random word from the scripture text
     public void HideRandomWords()
     {
         Random random = new Random();
@@ -25,13 +25,26 @@ class Scripture
         {
             if (!word.IsHidden)
             {
-                word.Hide();
+                word.Hide(); // Replace the word with underscores
                 break; // Stop after hiding one word
             }
         }
     }
 
-    // Check if all words are hidden
+    // Reveal one hidden word for hints
+    public void RevealHint()
+    {
+        foreach (Word word in _words)
+        {
+            if (word.IsHidden)
+            {
+                word.Unhide(); // Show the word
+                break; // Stop after revealing one word
+            }
+        }
+    }
+
+    // Check if all words in the scripture are hidden
     public bool IsFullyHidden()
     {
         foreach (Word word in _words)
@@ -42,10 +55,10 @@ class Scripture
         return true;
     }
 
-    // Display scripture with hidden words
+    // Display the scripture with hidden words and the reference
     public string Display()
     {
-        string scriptureText = _reference.GetFormattedReference() + "\n"; // Include reference
+        string scriptureText = _reference.GetFormattedReference() + "\n";
         foreach (Word word in _words)
         {
             scriptureText += word.GetDisplayText() + " ";

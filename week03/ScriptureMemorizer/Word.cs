@@ -1,22 +1,28 @@
 class Word
 {
-    private string _originalWord; // The word
-    public bool IsHidden { get; private set; } // Check if word is hidden
+    private string _originalWord; // The actual word
+    public bool IsHidden { get; private set; } // True if the word is hidden
 
-    // Constructor to store the word
+    // Save the word and mark it as not hidden
     public Word(string originalWord)
     {
         _originalWord = originalWord;
-        IsHidden = false; // Word starts visible
+        IsHidden = false;
     }
 
-    // Hide the word
+    // Hide the word by replacing it with underscores
     public void Hide()
     {
         IsHidden = true;
     }
 
-    // Show the word or underscores
+    // Reveal the word (used for the hint system)
+    public void Unhide()
+    {
+        IsHidden = false;
+    }
+
+    // Return the word or underscores based on its hidden state
     public string GetDisplayText()
     {
         return IsHidden ? new string('_', _originalWord.Length) : _originalWord;
